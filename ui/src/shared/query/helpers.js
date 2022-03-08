@@ -1,6 +1,5 @@
 import moment from 'moment'
 import {
-  INFLUXQL,
   ABSOLUTE,
   INVALID,
   RELATIVE_LOWER,
@@ -8,14 +7,11 @@ import {
 } from 'shared/constants/timeRange'
 const now = /^now|^:/ // ether now() or variable reference (':dashboardTime:') is present
 
-export const timeRangeType = ({upper, lower, type}) => {
+export const timeRangeType = ({upper, lower}) => {
   if (!upper && !lower) {
     return INVALID
   }
 
-  if (type && type !== INFLUXQL) {
-    return INVALID
-  }
   const isUpperValid =
     upper !== null &&
     upper !== undefined &&
