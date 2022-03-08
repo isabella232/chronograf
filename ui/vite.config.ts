@@ -46,6 +46,7 @@ export default defineConfig({
     alias: {
       src: path.resolve(__dirname, 'src'),
       shared: path.resolve(__dirname, 'src', 'shared'),
+      style: path.resolve(__dirname, 'src', 'style'),
       utils: path.resolve(__dirname, 'src', 'utils'),
     },
   },
