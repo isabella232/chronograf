@@ -5,10 +5,27 @@ import svgLoader from '@honkhonk/vite-plugin-svgr'
 import * as path from 'path'
 
 const SERVER_PORT = process.env.SERVER_PORT || 8888
-// process.env.npm_package_version
-// GIT_SHA
+
+// Workaround to  "WindowScroller.js" for import "bpfrpt_proptype_WindowScroller"
+// https://github.com/bvaughn/react-virtualized/issues/1212
+const importReactVirtualized = {
+  name: 'import-react-virtualized',
+  setup(build: any) {
+    build.onResolve({filter: /react-virtualized/}, async () => {
+      return {
+        path: path.resolve(
+          '../node_modules/react-virtualized/dist/umd/react-virtualized.js'
+        ),
+      }
+    })
+  },
+}
+
+// TODO use: process.env.npm_package_version, process.env.GIT_SHA
+
 export default defineConfig({
   plugins: [
+    importReactVirtualized,
     react({fastRefresh: process.env.NODE_ENV !== 'test'}),
     svgLoader(),
     envCompatible({prefix: ''}),
@@ -22,9 +39,7 @@ export default defineConfig({
   },
   optimizeDeps: {
     esbuildOptions: {
-      loader: {
-        '.js': 'jsx',
-      },
+      plugins: [importReactVirtualized],
     },
   },
   resolve: {
