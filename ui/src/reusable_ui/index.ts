@@ -21,12 +21,12 @@ import {
   ComponentSize,
   ComponentStatus,
   DropdownMenuColors,
-  DropdownChild,
   ButtonShape,
   Greys,
   IconFont,
   Columns,
 } from './types'
+import type {DropdownChild} from './types'
 
 // Fire de lazer
 export {
