@@ -24,6 +24,9 @@ const importReactVirtualized = {
 // TODO use: process.env.npm_package_version, process.env.GIT_SHA
 
 export default defineConfig({
+  build: {
+    outDir: path.resolve(__dirname, 'build')
+  },
   plugins: [
     importReactVirtualized,
     react({
