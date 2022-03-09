@@ -89,7 +89,6 @@ export type {
   Cell,
   NewDefaultCell,
   CellQuery,
-  CellType,
   PBCell,
   Protoboard,
   Legend,
@@ -143,6 +142,7 @@ export type {
 }
 
 export {
+  CellType,
   SourceAuthenticationMethod,
   RemoteDataState,
   TemplateType,
