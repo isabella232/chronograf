@@ -26,7 +26,14 @@ const importReactVirtualized = {
 export default defineConfig({
   plugins: [
     importReactVirtualized,
-    react({fastRefresh: process.env.NODE_ENV !== 'test'}),
+    react({
+      fastRefresh: process.env.NODE_ENV !== 'test',
+      babel: {
+        parserOpts: {
+          plugins: ['decorators-legacy'],
+        },
+      },
+    }),
     svgLoader(),
     envCompatible({prefix: ''}),
   ],
