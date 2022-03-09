@@ -6,15 +6,23 @@ import * as path from 'path'
 
 const SERVER_PORT = process.env.SERVER_PORT || 8888
 
-// Workaround to  "WindowScroller.js" for import "bpfrpt_proptype_WindowScroller"
-// https://github.com/bvaughn/react-virtualized/issues/1212
-const importReactVirtualized = {
-  name: 'import-react-virtualized',
+const importWorkarounds = {
+  name: 'import-workarounds',
   setup(build: any) {
+    // Workaround to  "WindowScroller.js" for import "bpfrpt_proptype_WindowScroller"
+    // https://github.com/bvaughn/react-virtualized/issues/1212
     build.onResolve({filter: /react-virtualized/}, async () => {
       return {
         path: path.resolve(
           '../node_modules/react-virtualized/dist/umd/react-virtualized.js'
+        ),
+      }
+    })
+    // fixing wrong default import of warning lib
+    build.onResolve({filter: /react-router/}, async () => {
+      return {
+        path: path.resolve(
+          '../node_modules/react-router/umd/ReactRouter.min.js'
         ),
       }
     })
@@ -28,7 +36,7 @@ export default defineConfig({
     outDir: path.resolve(__dirname, 'build'),
   },
   plugins: [
-    importReactVirtualized,
+    importWorkarounds,
     react({
       fastRefresh: process.env.NODE_ENV !== 'test',
       babel: {
@@ -49,7 +57,7 @@ export default defineConfig({
   },
   optimizeDeps: {
     esbuildOptions: {
-      plugins: [importReactVirtualized],
+      plugins: [importWorkarounds],
     },
   },
   resolve: {
