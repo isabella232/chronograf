@@ -26,6 +26,14 @@ const importWorkarounds = {
         ),
       }
     })
+    // fix: 'hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js?v=4e24e3f3' does not provide an export named 'default'
+    build.onResolve({filter: /hoist-non-react-statics/}, async () => {
+      return {
+        path: path.resolve(
+          '../node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.min.js'
+        ),
+      }
+    })
   },
 }
 
