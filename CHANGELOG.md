@@ -7,6 +7,7 @@
 ### Other
 
 1. [#5875](https://github.com/influxdata/chronograf/pull/5875): Upgrade to node 16 LTS.
+1. [#5754](https://github.com/influxdata/chronograf/pull/5754): Upgrade golang to 1.18.
 
 ## v1.9.4 [2022-03-22]
 
